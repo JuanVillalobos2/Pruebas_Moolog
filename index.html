@@ -566,36 +566,39 @@
                             </div>
 
                             <!-- Inputs de Insumos -->
-                            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                                <div>
-                                    <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Insumo Solicitado</label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+                                <!-- 1. Insumo Solicitado -->
+                                <div class="flex flex-col">
+                                    <label class="block text-xs font-semibold text-gray-500 uppercase mb-1 h-8 flex items-end">Insumo Solicitado</label>
                                     <div class="relative">
-                                        <input type="number" id="insumo-proveedor" step="0.01" autocomplete="off" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none" placeholder="0.00">
+                                        <input type="number" id="insumo-proveedor" step="0.01" autocomplete="off" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none" placeholder="0.00">
                                         <span class="absolute right-3 top-2.5 text-gray-400 text-sm" id="unidad-insumo-1">Kg</span>
                                     </div>
                                 </div>
-
-                                <div>
-                                    <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Insumo Real Recibido</label>
+                            
+                                <!-- 2. Insumo Real Recibido -->
+                                <div class="flex flex-col">
+                                    <label class="block text-xs font-semibold text-gray-500 uppercase mb-1 h-8 flex items-end">Insumo Real Recibido</label>
                                     <div class="relative">
-                                        <input type="number" id="insumo-real" step="0.01" oninput="calcularRendimiento()" autocomplete="off" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none" placeholder="0.00">
+                                        <input type="number" id="insumo-real" step="0.01" oninput="calcularRendimiento()" autocomplete="off" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none" placeholder="0.00">
                                         <span class="absolute right-3 top-2.5 text-gray-400 text-sm" id="unidad-insumo-2">Kg</span>
                                     </div>
                                 </div>
-
-                                <!-- CAMPO CONDICIONAL: Solo visible si la unidad NO es Kg -->
-                                <div id="box-peso-kilos" class="hidden">
-                                    <label class="block text-xs font-semibold text-indigo-600 uppercase mb-1">Peso Total Entrada</label>
+                            
+                                <!-- 3. Campo Condicional: Peso Total Entrada -->
+                                <div id="box-peso-kilos" class="flex flex-col hidden">
+                                    <label class="block text-xs font-semibold text-indigo-600 uppercase mb-1 h-8 flex items-end">Peso Total Entrada</label>
                                     <div class="relative">
-                                        <input type="number" id="insumo-peso-kg" step="0.01" oninput="calcularRendimiento()" autocomplete="off" class="w-full border border-indigo-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none bg-indigo-50/40" placeholder="0.00">
+                                        <input type="number" id="insumo-peso-kg" step="0.01" oninput="calcularRendimiento()" autocomplete="off" class="w-full border border-indigo-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none bg-indigo-50/40" placeholder="0.00">
                                         <span class="absolute right-3 top-2.5 text-indigo-500 font-bold text-sm">Kg</span>
                                     </div>
                                 </div>
-
-                                <div>
-                                    <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Insumo Reducido (Opcional)</label>
+                            
+                                <!-- 4. Insumo Reducido -->
+                                <div class="flex flex-col">
+                                    <label class="block text-xs font-semibold text-gray-500 uppercase mb-1 h-8 flex items-end">Insumo Reducido (Opcional)</label>
                                     <div class="relative">
-                                        <input type="number" id="insumo-reducido" step="0.01" oninput="calcularRendimiento()" autocomplete="off" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none" placeholder="0.00">
+                                        <input type="number" id="insumo-reducido" step="0.01" oninput="calcularRendimiento()" autocomplete="off" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none" placeholder="0.00">
                                         <span class="absolute right-3 top-2.5 text-gray-400 text-sm" id="unidad-insumo-3">Kg</span>
                                     </div>
                                 </div>
@@ -1121,7 +1124,7 @@
             document.getElementById('registro-txt-insumo').innerText = orden.Insumo_Principal;
             document.getElementById('unidad-insumo-1').innerText = orden.Unidad;
             document.getElementById('unidad-insumo-2').innerText = orden.Unidad;
-            document.getElementById('unidad-insumo-3').innerText = orden.Unidad;
+            document.getElementById('unidad-insumo-3').innerText = "KG";
 
             // 2. Localizar registro previo en Produccion_Real si existe
             const realData = rawDatabase.produccionReal.find(p => p.ID_Orden === orden.ID_Orden);
